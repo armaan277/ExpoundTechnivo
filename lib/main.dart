@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:new_task/header_section.dart';
+import 'package:new_task/second_tabbar.dart';
+import 'package:new_task/stage_history.dart';
+import 'package:new_task/widgets/custom_button1.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,17 +22,34 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text('TabBar Example'),
+//         ),
+//         body: StageHistoryTimeline(),
+//       ),
+//     );
+//   }
+// }
+
 class CRMLayout extends StatefulWidget {
   @override
   _CRMLayoutState createState() => _CRMLayoutState();
 }
 
 class _CRMLayoutState extends State<CRMLayout> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xff11334E),
         title: Row(
@@ -91,59 +111,192 @@ class _CRMLayoutState extends State<CRMLayout> {
       ),
       body: Row(
         children: [
-          if (screenSize.width > 800)
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-              ),
-              child: NavigationRail(
-                selectedIndex: _selectedIndex,
-                onDestinationSelected: (int index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-                labelType: NavigationRailLabelType.all,
-                destinations: [
-                  _buildDestination(Icons.dashboard, 'Dashboard', 0),
-                  _buildDestination(Icons.pin, 'Dashboard', 0),
-                  _buildDestination(Icons.shopping_bag, 'Dashboard', 0),
-                  _buildDestination(Icons.build_outlined, 'Dashboard', 0),
-                  _buildDestination(Icons.person, 'Dashboard', 0),
-                  _buildDestination(Icons.graphic_eq, 'Dashboard', 0),
-
-                  // NavigationRailDestination(
-                  //   icon: Icon(Icons.dashboard),
-                  //   label: Text('Dashboard'),
-                  // ),
-                  // NavigationRailDestination(
-                  //   icon: Icon(Icons.people),
-                  //   label: Text('Leads'),
-                  // ),
-                  // NavigationRailDestination(
-                  //   icon: Icon(Icons.account_circle),
-                  //   label: Text('Accounts'),
-                  // ),
-                  // NavigationRailDestination(
-                  //   icon: Icon(Icons.analytics),
-                  //   label: Text('Analytics'),
-                  // ),
-                ],
-              ),
+          // HeaderSection(),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
             ),
+            child: NavigationRail(
+              selectedIndex: _selectedIndex,
+              onDestinationSelected: (int index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+              labelType: NavigationRailLabelType.all,
+              destinations: [
+                _buildDestination(Icons.dashboard, 'Dashboard', 0),
+                _buildDestination(Icons.pin, 'Pin', 1),
+                _buildDestination(Icons.shopping_bag, 'Bag', 2),
+                _buildDestination(Icons.build_outlined, 'Tools', 3),
+                _buildDestination(Icons.person, 'Profile', 4),
+                _buildDestination(Icons.graphic_eq, 'Graph', 5),
+              ],
+            ),
+          ),
           Expanded(
             flex: 5,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(
-                child: Column(
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    HeaderSection(),
-                    SizedBox(height: 20),
-                    TabsSection(),
-                    SizedBox(height: 20),
-                    MainContentArea(),
+                    Expanded(
+                      flex: 40,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade400),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.fiber_manual_record,
+                                        size: 15,
+                                        color: Colors.orange[900],
+                                      ),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        "Contacted",
+                                        style: TextStyle(color: Colors.orange),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.timelapse,
+                                        size: 15,
+                                        color: Colors.grey,
+                                      ),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        "Pending Actions",
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Mamta Naik',
+                                        style: TextStyle(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffFFF9E6),
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 14.0,
+                                                vertical: 8,
+                                              ),
+                                              child: Text(
+                                                'Create Account',
+                                                style: TextStyle(
+                                                  color: Color(0xffF98900),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 20),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffEDFFF0),
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 14.0,
+                                                vertical: 8,
+                                              ),
+                                              child: Text(
+                                                'Create Account',
+                                                style: TextStyle(
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 12,
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 15,
+                                          color: Colors.purple,
+                                        ),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        "Aniruddin Naidu",
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                  Divider(thickness: 0.4, color: Colors.grey),
+                                ],
+                              ),
+                              TabsSection(),
+
+                              // SizedBox(height: 20),
+                              // MainContentArea(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 30,
+                      child: SecondTabbar(),
+                    ),
+                    Expanded(
+                      flex: 20,
+                      child: StageHistoryTimeline(),
+                    ),
                   ],
                 ),
               ),
@@ -153,43 +306,42 @@ class _CRMLayoutState extends State<CRMLayout> {
       ),
     );
   }
-}
 
-class HeaderSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Dashboard / Load / LE-010071"),
-            SizedBox(height: 10),
-            Text(
-              'LE-010071',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              children: [
-                Chip(label: Text('New')),
-                Chip(label: Text('Contacted')),
-                Chip(label: Text('Nurturing')),
-                Chip(label: Text('Qualified')),
-                Chip(label: Text('Unqualified')),
-              ],
-            ),
-          ],
-        ),
-        ElevatedButton(
-          onPressed: () {},
-          child: Text('Mark as Converted'),
-        ),
-      ],
+  NavigationRailDestination _buildDestination(
+      IconData icon, String label, int index) {
+    return NavigationRailDestination(
+      icon: _selectedIndex == index
+          ? _buildSelectedIcon(icon)
+          : Icon(icon, color: Colors.grey),
+      selectedIcon: _buildSelectedIcon(icon),
+      label: Text(label),
     );
   }
+
+  Widget _buildSelectedIcon(IconData icon) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        color: Color(0xff11334E),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(
+          color: Color(0xff728390),
+          width: 2,
+        ),
+      ),
+      child: Icon(icon, color: Colors.white),
+    );
+  }
+}
+
+Widget _buildVerticalDivider() {
+  return Container(
+    height: 34,
+    width: 1,
+    color: Colors.grey[400],
+    margin: EdgeInsets.symmetric(horizontal: 8.0),
+  );
 }
 
 class TabsSection extends StatelessWidget {
@@ -240,155 +392,220 @@ class MainContentArea extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Activity',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+              // Text(
+              //   'Activity',
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
               SizedBox(height: 10),
-              ActivityActions(),
+              // ActivityActions(),
             ],
           ),
         ),
         SizedBox(width: 20),
-        Expanded(
-          flex: 3,
-          child: StageHistorySection(),
-        ),
+
+        // Expanded(
+        //   flex: 3,
+        //   child: StageHistorySection(),
+        // ),
       ],
     );
   }
 }
 
-class ActivityActions extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Log a Call'),
-              ),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Email'),
-              ),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Event'),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20),
-        TextField(
-          decoration: InputDecoration(
-            labelText: 'Subject',
-            border: OutlineInputBorder(),
-          ),
-        ),
-        SizedBox(height: 10),
-        TextField(
-          decoration: InputDecoration(
-            labelText: 'Due Date',
-            border: OutlineInputBorder(),
-          ),
-        ),
-        SizedBox(height: 10),
-        TextField(
-          decoration: InputDecoration(
-            labelText: 'Description',
-            border: OutlineInputBorder(),
-          ),
-        ),
-      ],
-    );
-  }
-}
+// class ActivityActions extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Row(
+//           children: [
+//             Expanded(
+//               child: ElevatedButton(
+//                 onPressed: () {},
+//                 child: Text('Log a Call'),
+//               ),
+//             ),
+//             SizedBox(width: 10),
+//             Expanded(
+//               child: ElevatedButton(
+//                 onPressed: () {},
+//                 child: Text('Email'),
+//               ),
+//             ),
+//             SizedBox(width: 10),
+//             Expanded(
+//               child: ElevatedButton(
+//                 onPressed: () {},
+//                 child: Text('Event'),
+//               ),
+//             ),
+//           ],
+//         ),
+//         SizedBox(height: 20),
+//         TextField(
+//           decoration: InputDecoration(
+//             labelText: 'Subject',
+//             border: OutlineInputBorder(),
+//           ),
+//         ),
+//         SizedBox(height: 10),
+//         TextField(
+//           decoration: InputDecoration(
+//             labelText: 'Due Date',
+//             border: OutlineInputBorder(),
+//           ),
+//         ),
+//         SizedBox(height: 10),
+//         TextField(
+//           decoration: InputDecoration(
+//             labelText: 'Description',
+//             border: OutlineInputBorder(),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
-class StageHistorySection extends StatelessWidget {
+class OtherContactsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      color: Colors.grey[100],
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Stage History',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Account',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                      child: DropdownButtonFormField(
+                        hint: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text('Select Option'),
+                        ),
+                        items: [
+                          DropdownMenuItem(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('Account 1'),
+                              ),
+                              value: 'Account 1'),
+                          DropdownMenuItem(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('Account 2'),
+                              ),
+                              value: 'Account 2'),
+                        ],
+                        onChanged: (value) {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 20),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Contact',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                      child: DropdownButtonFormField(
+                        hint: Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Text('Select Option'),
+                        ),
+                        items: [
+                          DropdownMenuItem(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('Contact 1'),
+                              ),
+                              value: 'Contact 1'),
+                          DropdownMenuItem(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('Contact 2'),
+                              ),
+                              value: 'Contact 2'),
+                        ],
+                        onChanged: (value) {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          SizedBox(height: 10),
           ListTile(
-            leading: Icon(Icons.timeline),
-            title: Text('Team | 09:00am'),
-            subtitle: Text('Created Jiya Gopal'),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Pranab Biyani',
+                      style: TextStyle(color: Colors.blue[400]),
+                    ),
+                    Text('Sales Head'),
+                  ],
+                ),
+                Text(
+                  'Associate Vp',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
           ),
           ListTile(
-            leading: Icon(Icons.timeline),
-            title: Text('Team | 10:00am'),
-            subtitle: Text('Assigned to Aniruddh Naidu'),
-          ),
-          ListTile(
-            leading: Icon(Icons.event),
-            title: Text('Event | 12:00pm'),
-            subtitle: Text('Arrange a Call'),
-          ),
-          ListTile(
-            leading: Icon(Icons.update),
-            title: Text('Lead Update | 04:00pm'),
-            subtitle: Text('Marked as Contacted'),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Nayan Johal',
+                      style: TextStyle(color: Colors.blue[400]),
+                    ),
+                    Text('Sales Head'),
+                  ],
+                ),
+                Text(
+                  'Associate Vp',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
-}
-
-class OtherContactsTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        DropdownButtonFormField(
-          decoration: InputDecoration(labelText: 'Account'),
-          items: [
-            DropdownMenuItem(child: Text('Account 1'), value: 'Account 1'),
-            DropdownMenuItem(child: Text('Account 2'), value: 'Account 2'),
-          ],
-          onChanged: (value) {},
-        ),
-        SizedBox(height: 10),
-        DropdownButtonFormField(
-          decoration: InputDecoration(labelText: 'Contact'),
-          items: [
-            DropdownMenuItem(child: Text('Contact 1'), value: 'Contact 1'),
-            DropdownMenuItem(child: Text('Contact 2'), value: 'Contact 2'),
-          ],
-          onChanged: (value) {},
-        ),
-      ],
-    );
-  }
-}
-
-Widget _buildVerticalDivider() {
-  return Container(
-    height: 34, // Adjust the height based on the AppBar height
-    width: 1, // Width of the divider line
-    color: Colors.grey[400], // Color of the divider line
-    margin: EdgeInsets.symmetric(horizontal: 8.0), // Space around the divider
-  );
 }
 
 NavigationRailDestination _buildDestination(
@@ -407,9 +624,9 @@ Widget _buildSelectedIcon(IconData icon) {
     height: 50,
     decoration: BoxDecoration(
       color: Color(0xff11334E),
-      borderRadius: BorderRadius.circular(4), // Square-like border
+      borderRadius: BorderRadius.circular(4),
       border: Border.all(
-        color: Color(0xff728390), // Border color
+        color: Color(0xff728390),
         width: 2,
       ),
     ),
