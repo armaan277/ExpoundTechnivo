@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SecondTabbar extends StatelessWidget {
+  const SecondTabbar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration:
           BoxDecoration(border: Border.all(color: Colors.grey.shade400)),
       child: DefaultTabController(
-        length: 4, // Number of tabs
+        length: 4,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Column(
             children: [
-              TabBar(
+              const TabBar(
                 labelColor: Color(0xff11334E),
                 unselectedLabelColor: Colors.grey,
                 indicatorColor: Color(0xff11334E),
@@ -26,16 +28,6 @@ class SecondTabbar extends StatelessWidget {
                   Tab(text: 'Note & File'),
                 ],
               ),
-              // Expanded(
-              //   child: TabBarView(
-              //     children: [
-              //       Center(child: Text('Activity Content')),
-              //       Center(child: Text('Actionables Content')),
-              //       Center(child: Text('Tasks Content')),
-              //       Center(child: Text('Note & File Content')),
-              //     ],
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Row(
@@ -49,11 +41,11 @@ class SecondTabbar extends StatelessWidget {
                           children: [
                             Container(
                               color: Colors.grey,
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.call),
+                              padding: const EdgeInsets.all(10.0),
+                              child: const Icon(Icons.call),
                             ),
-                            SizedBox(width: 10),
-                            Text(
+                            const SizedBox(width: 10),
+                            const Text(
                               'Log a Call',
                               style: TextStyle(
                                 fontSize: 12,
@@ -66,19 +58,20 @@ class SecondTabbar extends StatelessWidget {
                     ),
                     Flexible(
                       child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 10.0),
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey.shade200),
                         ),
                         child: Row(
                           children: [
                             Container(
-                              color: Color(0xffFFDAE1),
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.chat_bubble_outline_outlined),
+                              color: const Color(0xffFFDAE1),
+                              padding: const EdgeInsets.all(10.0),
+                              child: const Icon(
+                                  Icons.chat_bubble_outline_outlined),
                             ),
-                            SizedBox(width: 10),
-                            Text(
+                            const SizedBox(width: 10),
+                            const Text(
                               'Email',
                               style: TextStyle(
                                 fontSize: 12,
@@ -98,11 +91,11 @@ class SecondTabbar extends StatelessWidget {
                           children: [
                             Container(
                               color: Colors.grey,
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.lightbulb_outline),
+                              padding: const EdgeInsets.all(10.0),
+                              child: const Icon(Icons.lightbulb_outline),
                             ),
-                            SizedBox(width: 10),
-                            Text(
+                            const SizedBox(width: 10),
+                            const Text(
                               'Event',
                               style: TextStyle(
                                 fontSize: 12,
@@ -116,14 +109,14 @@ class SecondTabbar extends StatelessWidget {
                   ],
                 ),
               ),
-              Row(
+              const Row(
                 children: [
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
                             'Subject',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -144,7 +137,7 @@ class SecondTabbar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
                             'Add People',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -161,12 +154,12 @@ class SecondTabbar extends StatelessWidget {
                   ),
                 ],
               ),
-              DateTimePickerExample(),
-              Column(
+              const DateTimePickerExample(),
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       'Description',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -181,13 +174,12 @@ class SecondTabbar extends StatelessWidget {
                   ),
                 ],
               ),
-
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.add, size: 25),
                         Text(
@@ -199,7 +191,16 @@ class SecondTabbar extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Row(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: const Color(0xff11334E),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
@@ -210,15 +211,6 @@ class SecondTabbar extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: Color(0xff11334E),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 14, vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
                       ),
                     ),
                   ],
@@ -233,13 +225,15 @@ class SecondTabbar extends StatelessWidget {
 }
 
 class DateTimePickerExample extends StatefulWidget {
+  const DateTimePickerExample({super.key});
+
   @override
   _DateTimePickerExampleState createState() => _DateTimePickerExampleState();
 }
 
 class _DateTimePickerExampleState extends State<DateTimePickerExample> {
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _timeController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -275,8 +269,8 @@ class _DateTimePickerExampleState extends State<DateTimePickerExample> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   'Date',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -284,7 +278,7 @@ class _DateTimePickerExampleState extends State<DateTimePickerExample> {
               ),
               TextField(
                 controller: _dateController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'MM/DD/YYYY',
                   suffixIcon: Icon(Icons.calendar_today),
                   border: OutlineInputBorder(),
@@ -295,13 +289,13 @@ class _DateTimePickerExampleState extends State<DateTimePickerExample> {
             ],
           ),
         ),
-        SizedBox(width: 100),
+        const SizedBox(width: 100),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   'Time',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -309,7 +303,7 @@ class _DateTimePickerExampleState extends State<DateTimePickerExample> {
               ),
               TextField(
                 controller: _timeController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'HH:MM',
                   suffixIcon: Icon(Icons.access_time),
                   border: OutlineInputBorder(),

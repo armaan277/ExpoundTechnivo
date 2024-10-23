@@ -8,7 +8,8 @@ class CustomButton1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: title == 'New' ? Color(0xffFFE9D2) : Color(0xffDBDBDB),
+        color:
+            title == 'New' ? const Color(0xffFFE9D2) : const Color(0xffDBDBDB),
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Padding(
@@ -19,7 +20,7 @@ class CustomButton1 extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-            color: title == "New" ? Color(0xffF98900) : Colors.grey,
+            color: title == "New" ? const Color(0xffF98900) : Colors.grey,
             fontWeight: FontWeight.bold,
           ),
         ),

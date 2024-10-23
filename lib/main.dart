@@ -2,41 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:new_task/header_section.dart';
 import 'package:new_task/second_tabbar.dart';
 import 'package:new_task/stage_history.dart';
-import 'package:new_task/widgets/custom_button1.dart';
+import 'package:new_task/upcoming_overdue.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 int _selectedIndex = 0;
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Responsive CRM Layout',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: CRMLayout(),
+      home: const CRMLayout(),
     );
   }
 }
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: Text('TabBar Example'),
-//         ),
-//         body: StageHistoryTimeline(),
-//       ),
-//     );
-//   }
-// }
-
 class CRMLayout extends StatefulWidget {
+  const CRMLayout({super.key});
+
   @override
   _CRMLayoutState createState() => _CRMLayoutState();
 }
@@ -46,13 +36,11 @@ class _CRMLayoutState extends State<CRMLayout> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xff11334E),
-        title: Row(
+        backgroundColor: const Color(0xff11334E),
+        title: const Row(
           children: [
             Icon(
               Icons.apps,
@@ -68,14 +56,14 @@ class _CRMLayoutState extends State<CRMLayout> {
         ),
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 15),
+            margin: const EdgeInsets.only(right: 15),
             height: 30,
             width: 30,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
             ),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
                 size: 20,
                 color: Color(0xff11334E),
@@ -88,20 +76,22 @@ class _CRMLayoutState extends State<CRMLayout> {
           ),
           _buildVerticalDivider(),
           IconButton(
-            icon: Icon(Icons.settings, size: 20, color: Colors.white),
+            icon: const Icon(Icons.settings, size: 20, color: Colors.white),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.notifications, size: 20, color: Colors.white),
+            icon:
+                const Icon(Icons.notifications, size: 20, color: Colors.white),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.calendar_today, size: 20, color: Colors.white),
+            icon:
+                const Icon(Icons.calendar_today, size: 20, color: Colors.white),
             onPressed: () {},
           ),
           _buildVerticalDivider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: CircleAvatar(
               radius: 15,
               child: Icon(Icons.person),
@@ -111,7 +101,6 @@ class _CRMLayoutState extends State<CRMLayout> {
       ),
       body: Row(
         children: [
-          // HeaderSection(),
           Container(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
@@ -120,7 +109,7 @@ class _CRMLayoutState extends State<CRMLayout> {
                   color: Colors.grey.withOpacity(0.2),
                   spreadRadius: 1,
                   blurRadius: 5,
-                  offset: Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
@@ -143,163 +132,202 @@ class _CRMLayoutState extends State<CRMLayout> {
             ),
           ),
           Expanded(
-            flex: 5,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 40,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade400),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Column(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const HeaderSection(),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: SingleChildScrollView(
+                          child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.fiber_manual_record,
-                                        size: 15,
-                                        color: Colors.orange[900],
-                                      ),
-                                      SizedBox(width: 5),
-                                      Text(
-                                        "Contacted",
-                                        style: TextStyle(color: Colors.orange),
-                                      ),
-                                    ],
+                              Expanded(
+                                flex: 40,
+                                child: Container(
+                                  height: 700,
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Colors.grey.shade400),
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.timelapse,
-                                        size: 15,
-                                        color: Colors.grey,
-                                      ),
-                                      SizedBox(width: 5),
-                                      Text(
-                                        "Pending Actions",
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Mamta Naik',
-                                        style: TextStyle(
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              color: Color(0xffFFF9E6),
-                                              borderRadius:
-                                                  BorderRadius.circular(5.0),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 14.0,
-                                                vertical: 8,
-                                              ),
-                                              child: Text(
-                                                'Create Account',
-                                                style: TextStyle(
-                                                  color: Color(0xffF98900),
-                                                  fontWeight: FontWeight.bold,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: 20),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.fiber_manual_record,
+                                                  size: 15,
+                                                  color: Colors.orange[900],
                                                 ),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(width: 20),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              color: Color(0xffEDFFF0),
-                                              borderRadius:
-                                                  BorderRadius.circular(5.0),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 14.0,
-                                                vertical: 8,
-                                              ),
-                                              child: Text(
-                                                'Create Account',
-                                                style: TextStyle(
-                                                  color: Colors.green,
-                                                  fontWeight: FontWeight.bold,
+                                                const SizedBox(width: 5),
+                                                const Text(
+                                                  "Contacted",
+                                                  style: TextStyle(
+                                                      color: Colors.orange),
                                                 ),
-                                              ),
+                                              ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 20),
-                                  Row(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 12,
-                                        child: Icon(
-                                          Icons.person,
-                                          size: 15,
-                                          color: Colors.purple,
+                                            const Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.timelapse,
+                                                  size: 15,
+                                                  color: Colors.grey,
+                                                ),
+                                                SizedBox(width: 5),
+                                                Text(
+                                                  "Pending Actions",
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      SizedBox(width: 8),
-                                      Text(
-                                        "Aniruddin Naidu",
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
+                                        const SizedBox(height: 10),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                const Text(
+                                                  'Mamta Naik',
+                                                  style: TextStyle(
+                                                    fontSize: 28,
+                                                    fontWeight: FontWeight.w900,
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: const Color(
+                                                            0xffFFF9E6),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5.0),
+                                                      ),
+                                                      child: const Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                          horizontal: 14.0,
+                                                          vertical: 8,
+                                                        ),
+                                                        child: Text(
+                                                          'Create Account',
+                                                          style: TextStyle(
+                                                            color: Color(
+                                                                0xffF98900),
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 20),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: const Color(
+                                                            0xffEDFFF0),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5.0),
+                                                      ),
+                                                      child: const Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                          horizontal: 14.0,
+                                                          vertical: 8,
+                                                        ),
+                                                        child: Text(
+                                                          'Create Account',
+                                                          style: TextStyle(
+                                                            color: Colors.green,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 20),
+                                            const Row(
+                                              children: [
+                                                CircleAvatar(
+                                                  radius: 12,
+                                                  child: Icon(
+                                                    Icons.person,
+                                                    size: 15,
+                                                    color: Colors.purple,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 8),
+                                                Text(
+                                                  "Aniruddin Naidu",
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                            const Divider(
+                                                thickness: 0.4,
+                                                color: Colors.grey),
+                                          ],
+                                        ),
+                                        const TabsSection(),
+                                      ],
+                                    ),
                                   ),
-                                  Divider(thickness: 0.4, color: Colors.grey),
-                                ],
+                                ),
                               ),
-                              TabsSection(),
-
-                              // SizedBox(height: 20),
-                              // MainContentArea(),
+                              const Expanded(
+                                flex: 50,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 30,
+                                          child: SecondTabbar(),
+                                        ),
+                                        Expanded(
+                                          flex: 20,
+                                          child: StageHistoryTimeline(),
+                                        ),
+                                      ],
+                                    ),
+                                    UpcomingOverdue(),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 30,
-                      child: SecondTabbar(),
-                    ),
-                    Expanded(
-                      flex: 20,
-                      child: StageHistoryTimeline(),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ],
@@ -323,10 +351,10 @@ class _CRMLayoutState extends State<CRMLayout> {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-        color: Color(0xff11334E),
+        color: const Color(0xff11334E),
         borderRadius: BorderRadius.circular(4),
         border: Border.all(
-          color: Color(0xff728390),
+          color: const Color(0xff728390),
           width: 2,
         ),
       ),
@@ -340,15 +368,18 @@ Widget _buildVerticalDivider() {
     height: 34,
     width: 1,
     color: Colors.grey[400],
-    margin: EdgeInsets.symmetric(horizontal: 8.0),
+    margin: const EdgeInsets.symmetric(horizontal: 8.0),
   );
 }
 
 class TabsSection extends StatelessWidget {
+  const TabsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 5,
+      initialIndex: 4,
       child: Column(
         children: [
           TabBar(
@@ -363,7 +394,7 @@ class TabsSection extends StatelessWidget {
               Tab(text: 'Other Contacts'),
             ],
           ),
-          Container(
+          SizedBox(
             height: 300,
             child: TabBarView(
               children: [
@@ -382,9 +413,11 @@ class TabsSection extends StatelessWidget {
 }
 
 class MainContentArea extends StatelessWidget {
+  const MainContentArea({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
@@ -392,82 +425,19 @@ class MainContentArea extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Text(
-              //   'Activity',
-              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              // ),
               SizedBox(height: 10),
-              // ActivityActions(),
             ],
           ),
         ),
         SizedBox(width: 20),
-
-        // Expanded(
-        //   flex: 3,
-        //   child: StageHistorySection(),
-        // ),
       ],
     );
   }
 }
 
-// class ActivityActions extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Row(
-//           children: [
-//             Expanded(
-//               child: ElevatedButton(
-//                 onPressed: () {},
-//                 child: Text('Log a Call'),
-//               ),
-//             ),
-//             SizedBox(width: 10),
-//             Expanded(
-//               child: ElevatedButton(
-//                 onPressed: () {},
-//                 child: Text('Email'),
-//               ),
-//             ),
-//             SizedBox(width: 10),
-//             Expanded(
-//               child: ElevatedButton(
-//                 onPressed: () {},
-//                 child: Text('Event'),
-//               ),
-//             ),
-//           ],
-//         ),
-//         SizedBox(height: 20),
-//         TextField(
-//           decoration: InputDecoration(
-//             labelText: 'Subject',
-//             border: OutlineInputBorder(),
-//           ),
-//         ),
-//         SizedBox(height: 10),
-//         TextField(
-//           decoration: InputDecoration(
-//             labelText: 'Due Date',
-//             border: OutlineInputBorder(),
-//           ),
-//         ),
-//         SizedBox(height: 10),
-//         TextField(
-//           decoration: InputDecoration(
-//             labelText: 'Description',
-//             border: OutlineInputBorder(),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 class OtherContactsTab extends StatelessWidget {
+  const OtherContactsTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -481,7 +451,7 @@ class OtherContactsTab extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Account',
                       style: TextStyle(
                         fontSize: 18,
@@ -493,23 +463,23 @@ class OtherContactsTab extends StatelessWidget {
                         border: Border.all(color: Colors.black),
                       ),
                       child: DropdownButtonFormField(
-                        hint: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                        hint: const Padding(
+                          padding: EdgeInsets.only(left: 8.0),
                           child: Text('Select Option'),
                         ),
-                        items: [
+                        items: const [
                           DropdownMenuItem(
+                              value: 'Account 1',
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 8.0),
                                 child: Text('Account 1'),
-                              ),
-                              value: 'Account 1'),
+                              )),
                           DropdownMenuItem(
+                              value: 'Account 2',
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 8.0),
                                 child: Text('Account 2'),
-                              ),
-                              value: 'Account 2'),
+                              )),
                         ],
                         onChanged: (value) {},
                       ),
@@ -517,12 +487,12 @@ class OtherContactsTab extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Contact',
                       style: TextStyle(
                         fontSize: 18,
@@ -534,23 +504,23 @@ class OtherContactsTab extends StatelessWidget {
                         border: Border.all(color: Colors.black),
                       ),
                       child: DropdownButtonFormField(
-                        hint: Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
+                        hint: const Padding(
+                          padding: EdgeInsets.only(left: 10.0),
                           child: Text('Select Option'),
                         ),
-                        items: [
+                        items: const [
                           DropdownMenuItem(
+                              value: 'Contact 1',
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 8.0),
                                 child: Text('Contact 1'),
-                              ),
-                              value: 'Contact 1'),
+                              )),
                           DropdownMenuItem(
+                              value: 'Contact 2',
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 8.0),
                                 child: Text('Contact 2'),
-                              ),
-                              value: 'Contact 2'),
+                              )),
                         ],
                         onChanged: (value) {},
                       ),
@@ -571,10 +541,10 @@ class OtherContactsTab extends StatelessWidget {
                       'Pranab Biyani',
                       style: TextStyle(color: Colors.blue[400]),
                     ),
-                    Text('Sales Head'),
+                    const Text('Sales Head'),
                   ],
                 ),
-                Text(
+                const Text(
                   'Associate Vp',
                   style: TextStyle(color: Colors.grey),
                 ),
@@ -592,10 +562,10 @@ class OtherContactsTab extends StatelessWidget {
                       'Nayan Johal',
                       style: TextStyle(color: Colors.blue[400]),
                     ),
-                    Text('Sales Head'),
+                    const Text('Sales Head'),
                   ],
                 ),
-                Text(
+                const Text(
                   'Associate Vp',
                   style: TextStyle(color: Colors.grey),
                 ),
@@ -623,10 +593,10 @@ Widget _buildSelectedIcon(IconData icon) {
     width: 50,
     height: 50,
     decoration: BoxDecoration(
-      color: Color(0xff11334E),
+      color: const Color(0xff11334E),
       borderRadius: BorderRadius.circular(4),
       border: Border.all(
-        color: Color(0xff728390),
+        color: const Color(0xff728390),
         width: 2,
       ),
     ),

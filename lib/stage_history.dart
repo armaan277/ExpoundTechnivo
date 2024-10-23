@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class StageHistoryTimeline extends StatelessWidget {
+  const StageHistoryTimeline({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 516,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade400),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text(
               'Stage History',
               style: TextStyle(
@@ -21,39 +24,39 @@ class StageHistoryTimeline extends StatelessWidget {
               ),
             ),
           ),
-          Divider(thickness: 0.4, color: Colors.grey),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
+          const Divider(thickness: 0.4, color: Colors.grey),
+          const Padding(
+            padding: EdgeInsets.only(left: 8.0),
             child: Text(
               'August 2024',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _buildTimelineTile(
             '28/08',
             'Team | 09:00am',
             'Created Jiya Gopal',
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _buildTimelineTile(
             '28/08',
             'Team | 10:00am',
             'Assigned to Aniruddh Naidu',
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _buildTimelineTile(
             '28/08',
             'Event | 12:00pm',
             'Arrange a Call',
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _buildTimelineTile(
             '28/08',
             'Lead Update | 04:00pm',
             'Marked as Contacted',
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -62,8 +65,8 @@ class StageHistoryTimeline extends StatelessWidget {
   Widget _buildTimelineTile(String date, String time, String description) {
     return TimelineTile(
       alignment: TimelineAlign.start,
-      isFirst: date == '28/08' && time == 'Team | 09:00am', // First element
-      isLast: description == 'Marked as Contacted', // Last element
+      isFirst: date == '28/08' && time == 'Team | 09:00am',
+      isLast: description == 'Marked as Contacted',
       indicatorStyle: IndicatorStyle(
         width: 30,
         indicatorXY: 0.5,
@@ -71,9 +74,9 @@ class StageHistoryTimeline extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
-            border: Border.all(color: Color(0xff11334E), width: 2),
+            border: Border.all(color: const Color(0xff11334E), width: 2),
           ),
-          child: Text(''),
+          child: const Text(''),
         ),
       ),
       afterLineStyle: LineStyle(
@@ -90,23 +93,23 @@ class StageHistoryTimeline extends StatelessWidget {
           children: [
             Text(
               date,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     time,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
                     ),
                   ),
                   Text(
                     description,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
