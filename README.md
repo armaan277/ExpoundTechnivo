@@ -1,16 +1,5 @@
-# new_task
+# Flutter Assessment Task 
 
-A new Flutter project.
+![task1](https://github.com/user-attachments/assets/42911bd8-484a-474f-ac08-8fade1591b00)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![task2](https://github.com/user-attachments/assets/0d244933-18ff-43ba-9532-bfddc5ef3818)
